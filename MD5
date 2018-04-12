@@ -1,0 +1,15 @@
+d54f5c5e9e541390a775500d4cd6938f *DESCRIPTION
+35e48ad80406953986dbfcd8b0cbe4ba *NAMESPACE
+5c0f2ab708fe6133eb1dc043a1b263b6 *R/MNARargument.R
+5f4e0985dc71f9fa27dc4e4ccceda86b *R/generate_JointModelEq.R
+2c1321959a987d6456b7c17520b26148 *R/mice.impute.hecknorm.R
+e35e038245e79cb5f0bbea0b3dc6e4d2 *R/mice.impute.hecknorm2step.R
+0514ea0111fc6dc22d7ec07e4f44d910 *R/mice.impute.heckprob.R
+4eddd518c5ae3c41f5a2341d7dd66e97 *R/miceMNAR-internal.R
+58eedeb5de34586b9674487b0433b2d6 *build/partial.rdb
+87021533886cbb72a8193f12d2e7e358 *man/MNARargument.Rd
+cda7c2c1f4018b34d57c400952a36cff *man/generate_JointModelEq.Rd
+7e2ef045c447908020708a11a022e77c *man/mice.impute.hecknorm.Rd
+9b71882497854a9965a283ff0f05fca2 *man/mice.impute.hecknorm2step.Rd
+900c76c4ed33b3e440d12d80d4c56158 *man/mice.impute.heckprob.Rd
+a4887cfb0174d915839710310e661820 *man/miceMNAR-package.Rd
