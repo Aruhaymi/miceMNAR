@@ -1,6 +1,7 @@
 mice.impute.hecknorm2step <-
 function(y, ry, x,JointModelEq, control, ...) {
 
+  colnames(x)<-unlist(lapply(colnames(x),FUN=function(x){gsub(" ","_",x, perl=T)}))
   vecvec<-2
   
   if(dim(control)[2]>1){vecvec<-apply(control,MARGIN=2, FUN=function(control){
@@ -16,7 +17,7 @@ function(y, ry, x,JointModelEq, control, ...) {
   
   rm(control,vecvec,JointModelEq)
   
-  heckit<-heckit2fit(formula_s, formula_o,data=cbind(ry,y,x))
+  heckit<-heckit2fit(formula_s, formula_o,data=as.data.frame(cbind(ry,y,x)))
   predlin<-linearPredictors(heckit$probit)
   imr <- ifelse(ry==1,dnorm(predlin)/pnorm(predlin),-dnorm(predlin)/pnorm(-predlin))
   delta0<-imr *(imr + predlin)

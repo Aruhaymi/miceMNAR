@@ -76,7 +76,7 @@ errors <- rmvnorm(500,mean=c(0,0),sigma=matrix(c(1,0.3,0.3,1),nrow=2,byrow=TRUE)
 Y <- X1+X2+errors[,1]
 Ry <- ifelse(0.66+1*X1-0.5*X2+X3+errors[,2]>0,1,0)
 
-Y[Ry==1] <- NA
+Y[Ry==0] <- NA
   
 simul_data <- data.frame(Y,X1,X2,X3)
 

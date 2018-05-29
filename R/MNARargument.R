@@ -20,6 +20,8 @@ function(data, method = NULL, predictorMatrix = NULL,varMNAR, JointModelEq=NULL)
 ### Modification of predictorMatrix #
     predictorMatrix<-cbind(predictorMatrix,pmin(1,mice(data,maxit=0)$nmis))
       colnames(predictorMatrix)[dim(predictorMatrix)[2]]<-paste("ind",varMNAR[i],sep="_")
+    predictorMatrix[varMNAR[i],] <-1
+    predictorMatrix[varMNAR[i],varMNAR[i]] <-0
     predictorMatrix[varMNAR[i],paste("ind",varMNAR[i],sep="_")] <-0 
     predictorMatrix<-rbind(predictorMatrix,0)
       row.names(predictorMatrix)[dim(predictorMatrix)[1]]<-paste("ind",varMNAR[i],sep="_")
@@ -45,15 +47,14 @@ function(data, method = NULL, predictorMatrix = NULL,varMNAR, JointModelEq=NULL)
   JointModelEq[paste("ind",varMNAR[i],sep="_"),paste(varMNAR[i],"_var_out",sep="")]<-0
   }
 
-
 ### Modification of JointModelEq #  
   for(i in 1:dim(data)[2]){
     if(is.factor(data[,i])==TRUE){
-      row.names(JointModelEq)[i]<-paste(row.names(JointModelEq)[i],"1",sep=".")
+      row.names(JointModelEq)[i]<-paste0(colnames(data)[i],unlist(lapply(levels(data[,i])[2],FUN=function(x){gsub(" ","_",x, perl=T)})))
       if(length(levels(data[,i]))>2){
-        for (j in 2:(length(levels(data[,i]))-1)){
+        for (j in 3:(length(levels(data[,i])))){
           JointModelEq<-rbind(JointModelEq,JointModelEq[i,])
-          row.names(JointModelEq)[dim(JointModelEq)[1]]<-paste(colnames(data)[i],j,sep=".")
+          row.names(JointModelEq)[dim(JointModelEq)[1]]<-paste0(colnames(data)[i],unlist(lapply(levels(data[,i])[j],FUN=function(x){gsub(" ","_",x, perl=T)})))
         }
       }
     }

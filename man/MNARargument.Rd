@@ -81,14 +81,16 @@ This package is only validated for the imputation of MNAR outcome. However, it i
 }
 \examples{
 
-# Import dataset with a suspected MNAR mechanism
-require("GJRM")
+require(GJRM)
 require(mvtnorm)
 require(pbivnorm)
+require(sampleSelection)
+
+# Import dataset with a suspected MNAR mechanism
 data("hiv") 
 
 # We select only one region (lusuka) and 5 variables
-lusuka <- hiv[hiv$region==5,c("hiv", "age", "highhiv", "condom", "smoke")]
+lusuka <- hiv[hiv$region==5,c("hiv", "age", "marital", "condom", "smoke")]
 
 # Categorical variables have to be recoded as factor
 lusuka$hiv <- as.factor(lusuka$hiv)
@@ -123,7 +125,7 @@ imputation <- mice(data = arg$data_mod,
 # Because of missing data only on one variable, fix maxit=1
 
 # Estimation on each imputed dataset and pooling               
-analysis <- with(imputation,glm(hiv~age+condom+highhiv,family=binomial(link="probit")))
+analysis <- with(imputation,glm(hiv~age+condom+marital,family=binomial(link="probit")))
 result <- pool(analysis)
 summary(result)
 
@@ -151,7 +153,7 @@ imputation <- mice(data = arg$data_mod,
                  maxit=5,m=5)
 
 # As classically, estimation on each imputed datasets and pooling               
-analysis <- with(imputation,glm(hiv~age+condom+highhiv,family=binomial(link="probit")))
+analysis <- with(imputation,glm(hiv~age+condom+marital,family=binomial(link="probit")))
 result <- pool(analysis)
 summary(result)}
 
@@ -170,7 +172,7 @@ errors <- rmvnorm(500,mean=c(0,0),sigma=matrix(c(1,0.3,0.3,1),nrow=2,byrow=TRUE)
 Y <- X1+X2+errors[,1]
 Ry <- ifelse(0.66+1*X1-0.5*X2+X3+errors[,2]>0,1,0)
 
-Y[Ry==1] <- NA
+Y[Ry==0] <- NA
   
 simul_data <- data.frame(Y,X1,X2,X3)
 

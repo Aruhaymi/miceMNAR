@@ -41,11 +41,11 @@ Jacques-Emmanuel Galimard
 }
 \examples{
 # Import dataset with a suspected MNAR mechanism
-require("GJRM")
+require(GJRM)
 data("hiv") 
 
 # We select only one region (lusuka) and 5 variables
-lusuka <- hiv[hiv$region==5,c("hiv", "age", "highhiv", "condom", "smoke")]
+lusuka <- hiv[hiv$region==5,c("hiv", "age", "marital", "condom", "smoke")]
 
 # Categorical variables have to be recoded as factor
 lusuka$hiv <- as.factor(lusuka$hiv)
@@ -57,9 +57,9 @@ JointModelEq <- generate_JointModelEq(data=lusuka,varMNAR = "hiv")
 
 # Fill in with 1 for variable included in equations
 JointModelEq[,"hiv_var_sel"] <- c(0,1,1,1,1) 
-# This indicates that age, highhiv, condom and smoke are included in the selection equation of hiv
+# This indicates that age, marital, condom and smoke are included in the selection equation of hiv
 JointModelEq[,"hiv_var_out"] <- c(0,1,1,1,0) 
-# This indicates that age, highhiv and condom are included in the outcome equation of hiv
+# This indicates that age, marital and condom are included in the outcome equation of hiv
 
 }
 

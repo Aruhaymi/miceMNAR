@@ -62,7 +62,7 @@ require(pbivnorm)
 data("hiv") 
 
 # We select only one region (lusuka) and 5 variables
-lusuka <- hiv[hiv$region==5,c("hiv", "age", "highhiv", "condom", "smoke")]
+lusuka <- hiv[hiv$region==5,c("hiv", "age", "marital", "condom", "smoke")]
 
 # Categorical variables have to be recoded as factor
 lusuka$hiv <- as.factor(lusuka$hiv)
@@ -93,7 +93,7 @@ arg <- MNARargument(data=lusuka,varMNAR="hiv",JointModelEq=JointModelEq)
 # Because of missing data only on one variable, fix maxit=1
 
 # Estimation on each imputed dataset and pooling               
-analysis <- with(imputation,glm(hiv~age+condom+highhiv,family=binomial(link="probit")))
+analysis <- with(imputation,glm(hiv~age+condom+marital,family=binomial(link="probit")))
 result <- pool(analysis)
 summary(result)}
 }

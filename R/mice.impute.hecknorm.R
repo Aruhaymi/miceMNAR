@@ -1,6 +1,7 @@
 mice.impute.hecknorm <-
 function(y, ry, x,JointModelEq, control, ...) {
 
+  colnames(x)<-unlist(lapply(colnames(x),FUN=function(x){gsub(" ","_",x, perl=T)}))
   vecvec<-2
    if(dim(control)[2]>1){
    vecvec<-apply(control,MARGIN=2, FUN=function(control){sum(ifelse(all.equal(y[ry],as.numeric(control[!is.na(control)]))==TRUE,1,0),
@@ -18,7 +19,7 @@ function(y, ry, x,JointModelEq, control, ...) {
   
   # 1. Estimate the Heckman's model parameters
   res <- copulaSampleSel(list(formula_s, 
-                               formula_o),data=cbind(ry,y,x),fp=TRUE)
+                               formula_o),data=as.data.frame(cbind(ry,y,x)),fp=TRUE)
 
   # 2. Draw q.star
   q.star<-rmvnorm(1, res$coefficients, res$Vb, method = "chol")
