@@ -45,7 +45,7 @@ The imputation algorithm consists of the following steps:
 A vector of length \code{nmis} with imputations.
 }
 \references{
-Galimard, J.-E., Chevret, S., Protopopescu, C., and Resche-Rigon, M. (2016) A multiple imputation approach for MNAR mechanisms compatible with Heckman's model. Statist. Med., 35: 2907-2920. doi:10.1002/sim.6902.
+Galimard, J.-E., Chevret, S., Protopopescu, C., and Resche-Rigon, M. (2016) A multiple imputation approach for MNAR mechanisms compatible with Heckman's model. Statistics In Medicine, 35: 2907-2920. doi:10.1002/sim.6902.
 %
 %Galimard, J.E., Chevret, S., Curis, E. and Resche-Rigon, M. (2018). Heckman imputation models for binary or continuous MNAR missing outcomes and MAR missing predictors (submitted).
 }

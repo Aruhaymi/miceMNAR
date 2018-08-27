@@ -49,6 +49,10 @@ A vector of length \code{nmis} with imputations (0 or 1).
 Jacques-Emmanuel Galimard and Matthieu Resche-Rigon
 }
 
+\references{
+Galimard, J.E., Chevret, S., Curis, E., and Resche-Rigon, M. (2018). Heckman imputation models for binary or continuous MNAR missing outcomes and MAR missing predictors. BMC Medical Research Methodology (In press).
+}
+
 \seealso{
 \code{\link{miceMNAR}}
 }
